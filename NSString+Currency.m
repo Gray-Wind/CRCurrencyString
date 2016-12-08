@@ -26,24 +26,34 @@
 #define DEFAULT_DECIMAL_SEPARATOR @"."
 #define DEFAULT_GROUPING_SEPARATOR @","
 #define DEFAULT_USES_GROUPING_SEPARATOR YES
+#define DEFAULT_SYMBOL_POSITION @"$#"
+#define DEFAULT_CODE_POSITION @"$ #"
+#define DEFAULT_NAME_POSITION @"# $"
 
 @implementation NSString (Currency)
 
 +(NSString *)currencyStringWithCentsAmount:(int)cents
-             currencyCode:(NSString *)currencyCode
-                 andStyle:(kCurrencyStyle)style
+                              currencyCode:(NSString *)currencyCode
+                                  andStyle:(kCurrencyStyle)style
 {
-
-    NSDictionary *currencyInfos = [self allCurrenciesDict][currencyCode];
+    
+    NSDictionary *currencyInfos = [self allCurrenciesDict][[currencyCode uppercaseString]];
     NSString *placeholder = [self placeholderWithSymbolPosition:currencyInfos[@"symbol_position"]
+                                                   codePosition:currencyInfos[@"code_position"]
+                                                   namePosition:currencyInfos[@"name_position"]
                                                          symbol:currencyInfos[@"symbol"]
+                                                   nativeSymbol:currencyInfos[@"symbol_native"]
                                                            code:currencyInfos[@"code"]
                                                            name:currencyInfos[@"name"]
                                                      pluralName:currencyInfos[@"name_plural"]
                                                         ammount:cents
                                                 andCurrentStyle:style];
     
-    NSString *formattedAmount = [self formattedStringAmountWithDecimalSeparator:currencyInfos[@"decimal_separator"] groupingSeparator:currencyInfos[@"grouping_separator"] decimalDigits:currencyInfos[@"decimal_digits"] useingGroupingSeparator:currencyInfos[@"using_group_separator"] andAmount:cents];
+    NSString *formattedAmount = [self formattedStringAmountWithDecimalSeparator:currencyInfos[@"decimal_separator"]
+                                                              groupingSeparator:currencyInfos[@"grouping_separator"]
+                                                                  decimalDigits:currencyInfos[@"decimal_digits"]
+                                                        useingGroupingSeparator:currencyInfos[@"using_group_separator"]
+                                                                      andAmount:cents];
     
     NSString *string = [NSString stringWithFormat:placeholder, formattedAmount];
     return string;
@@ -55,7 +65,10 @@
 
 
 +(NSString *)placeholderWithSymbolPosition:(NSString *)symbolPosition
+                              codePosition:(NSString *)codePosition
+                              namePosition:(NSString *)namePosition
                                     symbol:(NSString *)symbol
+                              nativeSymbol:(NSString *)nativeSymbol
                                       code:(NSString *)code
                                       name:(NSString *)name
                                 pluralName:(NSString *)pluralName
@@ -63,13 +76,16 @@
                            andCurrentStyle:(kCurrencyStyle)style {
     
     NSString *styleString;
+    NSString *placeholder;
     
     switch (style) {
         case 0:
             styleString = symbol;
+            placeholder = symbolPosition ? symbolPosition : DEFAULT_SYMBOL_POSITION;
             break;
         case 1:
             styleString = code;
+            placeholder = codePosition ? codePosition : DEFAULT_CODE_POSITION;
             break;
         case 2:
             if (cents <= 100) {
@@ -77,12 +93,15 @@
             } else {
                 styleString = pluralName;
             }
+            placeholder = namePosition ? namePosition : DEFAULT_NAME_POSITION;
             break;
+        case 3:
+            styleString = nativeSymbol;
+            placeholder = symbolPosition ? symbolPosition : DEFAULT_SYMBOL_POSITION;
         default:
             break;
     }
     
-    NSString *placeholder = symbolPosition;
     placeholder = [placeholder stringByReplacingOccurrencesOfString:@"$" withString:styleString];
     placeholder = [placeholder stringByReplacingOccurrencesOfString:@"#" withString:@"%@"];
     return placeholder;
@@ -107,7 +126,7 @@
 +(NSString *)formattedStringAmountWithDecimalSeparator:(NSString *)decimalSeparator
                                      groupingSeparator:(NSString *)groupingSeparator
                                          decimalDigits:(NSNumber *)decimalDigits
-                                 useingGroupingSeparator:(BOOL)usingGroupingSeparator
+                               useingGroupingSeparator:(BOOL)usingGroupingSeparator
                                              andAmount:(int)cents {
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];

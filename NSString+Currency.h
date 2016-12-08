@@ -149,7 +149,8 @@ typedef NS_ENUM(NSUInteger, kCurrency) {
 typedef enum {
     kCurrencyStyleSymbol,
     kCurrencyStyleCode,
-    kCurrencyStyleName
+    kCurrencyStyleName,
+    kCurrencyStyleNativeSymbol,
 } kCurrencyStyle;
 
 

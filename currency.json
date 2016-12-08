@@ -10,7 +10,9 @@
         "decimal_separator": ".",
         "grouping_separator": ",",
         "using_grouping_separator":true,
-        "symbol_position":"$#"
+        "symbol_position":"$#",
+        "name_position":"# $",
+        "code_position":"$ #"
     },
     "CAD": {
         "symbol": "CA$",
@@ -23,7 +25,9 @@
         "decimal_separator": ".",
         "grouping_separator": ",",
         "using_grouping_separator":true,
-        "symbol_position":"$#"
+        "symbol_position":"$#",
+        "name_position":"# $",
+        "code_position":"$ #"
     },
     "EUR": {
         "symbol": "€",
@@ -36,7 +40,24 @@
         "decimal_separator": ",",
         "grouping_separator": ".",
         "using_grouping_separator":true,
-        "symbol_position":"#$"
+        "symbol_position":"#$",
+        "name_position":"# $",
+        "code_position":"# $"
+    },
+    "GBP": {
+        "symbol": "£",
+        "name": "British Pound Sterling",
+        "symbol_native": "£",
+        "decimal_digits": 2,
+        "rounding": 0,
+        "code": "GBP",
+        "name_plural": "British pounds sterling",
+        "decimal_separator": ".",
+        "grouping_separator": ",",
+        "using_grouping_separator":true,
+        "symbol_position":"$#",
+        "name_position":"# $",
+        "code_position":"$ #"
     },
     "AED": {
         "symbol": "AED",
@@ -343,19 +364,6 @@
         "rounding": 0,
         "code": "ETB",
         "name_plural": "Ethiopian birrs"
-    },
-    "GBP": {
-        "symbol": "£",
-        "name": "British Pound Sterling",
-        "symbol_native": "£",
-        "decimal_digits": 2,
-        "rounding": 0,
-        "code": "GBP",
-        "name_plural": "British pounds sterling",
-        "decimal_separator": ".",
-        "grouping_separator": ",",
-        "using_grouping_separator":true,
-        "symbol_position":"$#"
     },
     "GEL": {
         "symbol": "GEL",
