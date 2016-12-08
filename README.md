@@ -3,6 +3,7 @@
 CRCurrencyString lets you get currency string right formatted in one single line of code.
 
 ## Podfile
+
 If you are using cocoapods, you can use this project with the following Podfile
 ```js
 pod 'CRCurrencyString'
@@ -13,6 +14,10 @@ Drag and drop the [NSString+Currency.h](https://github.com/craffenoux/CRCurrency
 
 ## Easy and quick
 CRCurrencyString is class category of NSString. It's super straightforward to use :
+
+```objective-c
+#import <CRCurrencyString/NSString+Currency.h>
+```
 
 **With the pre-defined list of currencies :**
 ```objective-c
