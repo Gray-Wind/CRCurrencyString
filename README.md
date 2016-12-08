@@ -23,13 +23,13 @@ CRCurrencyString is class category of NSString. It's super straightforward to us
 ```objective-c
 [NSString currencyStringWithCentsAmount:1678 currency:kUSDollar andStyle:kCurrencyStyleSymbol];
 ```
->> $16.78
+> $16.78
 
 **With a currency international code (ex: EUR, USD, GBP, etc..) :**
 ```objective-c
 [NSString currencyStringWithCentsAmount:5621 currencyCode:@"EUR" andStyle:kCurrencyStyleName];
 ```
->> 56,21 Euros
+> 56,21 Euros
 
 ## Styles
 ```objective-c
@@ -51,13 +51,13 @@ Display the currency name in English: 15.67 , 56.90 British pounds sterling, 895
 ## Supported Currencies
 
 Currency with local formatting included
->> US Dollar (USD)
+> US Dollar (USD)
 Canadian Dollar (CAD)
 Euro (EUR)
 British Pound Sterling (GBP)
 
 Currencies with generic formatting included
->>
+>
 United Arab Emirates Dirham (AED)
 Afghan Afghani (AFN)
 Albanian Lek (ALL)
