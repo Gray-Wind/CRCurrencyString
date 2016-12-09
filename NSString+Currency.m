@@ -44,6 +44,12 @@
 {
     
     NSDictionary *currencyInfos = [self allCurrenciesDict][[currencyCode uppercaseString]];
+    
+    if (!currencyInfos) {
+        NSLog(@"CRCurrencyString: Please pass a valid currency code");
+        @throw NSInternalInconsistencyException;
+    }
+    
     NSString *placeholder = [self placeholderWithSymbolPosition:currencyInfos[@"symbol_position"]
                                                    codePosition:currencyInfos[@"code_position"]
                                                    namePosition:currencyInfos[@"name_position"]
