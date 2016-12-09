@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "CRCurrencyString"
-  s.version      = "1.0.4"
+  s.version      = "1.0.5"
   s.summary      = "Currency string formatting made simple"
 
   s.description  = <<-DESC
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios
 
 
-  s.source       = {:git => "https://github.com/craffenoux/CRCurrencyString.git", :tag => "v1.0.4"}
+  s.source       = {:git => "https://github.com/craffenoux/CRCurrencyString.git", :tag => "v1.0.5"}
 
   s.source_files = '*.{h,m}'
   s.resource_bundles = {
