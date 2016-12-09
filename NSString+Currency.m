@@ -30,6 +30,12 @@
 #define DEFAULT_CODE_POSITION @"$ #"
 #define DEFAULT_NAME_POSITION @"# $"
 
+@interface StringCurrency : NSString
+@end
+
+@implementation StringCurrency
+@end
+
 @implementation NSString (Currency)
 
 +(NSString *)currencyStringWithCentsAmount:(int)cents
@@ -52,7 +58,7 @@
     NSString *formattedAmount = [self formattedStringAmountWithDecimalSeparator:currencyInfos[@"decimal_separator"]
                                                               groupingSeparator:currencyInfos[@"grouping_separator"]
                                                                   decimalDigits:currencyInfos[@"decimal_digits"]
-                                                        usingGroupingSeparator:[currencyInfos[@"using_group_separator"] boolValue]
+                                                         usingGroupingSeparator:[currencyInfos[@"using_group_separator"] boolValue]
                                                                       andAmount:cents];
     
     NSString *string = [NSString stringWithFormat:placeholder, formattedAmount];
@@ -114,7 +120,8 @@
 }
 
 +(NSDictionary *)allCurrenciesDict {
-    NSString *jsonFilePath = [[NSBundle mainBundle] pathForResource:@"currency" ofType:@"json"];
+    
+    NSString *jsonFilePath = [[NSBundle bundleForClass:[StringCurrency class]] pathForResource:@"currency" ofType:@"json"];
     NSError * error;
     NSString* fileContents = [NSString stringWithContentsOfFile:jsonFilePath encoding:NSUTF8StringEncoding error:&error];
     NSDictionary *currencies = [NSJSONSerialization
@@ -126,7 +133,7 @@
 +(NSString *)formattedStringAmountWithDecimalSeparator:(NSString *)decimalSeparator
                                      groupingSeparator:(NSString *)groupingSeparator
                                          decimalDigits:(NSNumber *)decimalDigits
-                               usingGroupingSeparator:(BOOL)usingGroupingSeparator
+                                usingGroupingSeparator:(BOOL)usingGroupingSeparator
                                              andAmount:(int)cents {
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
