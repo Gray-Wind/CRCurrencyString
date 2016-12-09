@@ -52,7 +52,7 @@
     NSString *formattedAmount = [self formattedStringAmountWithDecimalSeparator:currencyInfos[@"decimal_separator"]
                                                               groupingSeparator:currencyInfos[@"grouping_separator"]
                                                                   decimalDigits:currencyInfos[@"decimal_digits"]
-                                                        useingGroupingSeparator:currencyInfos[@"using_group_separator"]
+                                                        usingGroupingSeparator:[currencyInfos[@"using_group_separator"] boolValue]
                                                                       andAmount:cents];
     
     NSString *string = [NSString stringWithFormat:placeholder, formattedAmount];
@@ -126,7 +126,7 @@
 +(NSString *)formattedStringAmountWithDecimalSeparator:(NSString *)decimalSeparator
                                      groupingSeparator:(NSString *)groupingSeparator
                                          decimalDigits:(NSNumber *)decimalDigits
-                               useingGroupingSeparator:(BOOL)usingGroupingSeparator
+                               usingGroupingSeparator:(BOOL)usingGroupingSeparator
                                              andAmount:(int)cents {
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
