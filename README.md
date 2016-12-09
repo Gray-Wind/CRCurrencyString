@@ -17,7 +17,7 @@ Drag and drop the [NSString+Currency.h](https://github.com/craffenoux/CRCurrency
 CRCurrencyString is class category of NSString. It's super straightforward to use :
 
 ```objective-c
-#import <CRCurrencyString/NSString+Currency.h>
+#import "NSString+Currency.h"
 ```
 
 **With the pre-defined list of currencies :**
