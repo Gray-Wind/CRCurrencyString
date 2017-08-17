@@ -24,10 +24,6 @@ Pod::Spec.new do |s|
   s.source       = {:git => "https://github.com/craffenoux/CRCurrencyString.git", :tag => "v1.0.5"}
 
   s.source_files = '*.{h,m}'
-  s.resource_bundles = {
-      'CRCurrencyString' => [
-          '**/*.json'
-      ]
-    }
+  s.resources = '**/*.json'
 
 end
